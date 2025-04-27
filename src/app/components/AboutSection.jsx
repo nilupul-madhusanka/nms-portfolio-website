@@ -21,7 +21,7 @@ const TAB_DATA = [
     id: "education",
     content: (
       <ul className="list-disc pl-2">
-        <li>Fullstack Academy of Code</li>
+        <li>Developer Stack Academy - Panadura</li>
         <li>SLTC Research University - Sri Lanka</li>
       </ul>
     ),
@@ -31,8 +31,8 @@ const TAB_DATA = [
     id: "certifications",
     content: (
       <ul className="list-disc pl-2">
-        <li>AWS Cloud Practitioner</li>
-        <li>Google Professional Cloud Developer</li>
+        <li>Web Design for Beginners - CODL at UOM</li>
+        <li>Python for Beginners - CODL at UOM</li>
       </ul>
     ),
   },

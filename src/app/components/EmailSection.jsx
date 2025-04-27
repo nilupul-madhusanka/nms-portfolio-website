@@ -44,19 +44,19 @@ const EmailSection = () => {
           try my best to get back to you!
         </p>
         <div className="socials flex flex-row gap-2">
-          <Link href="https://github.com">
+          <Link href="https://github.com/nilupul-madhusanka">
             <Image src={GithubIcon} alt="Github Icon" width={50} height={50} className="hover:scale-110 transition-all duration-300" />
           </Link>
-          <Link href="https://linkedin.com">
+          <Link href="https://www.linkedin.com/in/nilupul-madhusanka-0a2055284">
             <Image src={LinkedinIcon} alt="Linkedin Icon" width={50} height={50} className="hover:scale-110 transition-all duration-300" />
           </Link>
-          <Link href="https://facebook.com">
+          <Link href="https://www.facebook.com/nilupulmadhu2126?mibextid=ZbWKwL">
             <Image src={FacebookIcon} alt="Facebook Icon" width={50} height={50} className="hover:scale-110 transition-all duration-300" />
           </Link>
-          <Link href="https://instagram.com">
+          <Link href="#">
             <Image src={InstagramIcon} alt="Instagram Icon" width={50} height={50} className="hover:scale-110 transition-all duration-300" />
           </Link>
-          <Link href="https://whatsapp.com">
+          <Link href="https://wa.me/+94774213504">
             <Image src={WhatsappIcon} alt="Whatsapp Icon" width={50} height={50} className="hover:scale-110 transition-all duration-300" />
           </Link>
         </div>
