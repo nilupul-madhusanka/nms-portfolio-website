@@ -73,7 +73,7 @@ const HeroSection = () => {
             {/* Profile image */}
           <div className="absolute inset-4 rounded-full bg-[#181818] flex items-center justify-center">
             <Image
-              src="/images/profile.png"
+              src="/images/profile.jpg"
               alt="hero image"
               className="rounded-full"
               width={300}
