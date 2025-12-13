@@ -6,9 +6,9 @@ import { motion, useInView } from "framer-motion";
 const skillsData = [
   {
     id: 1,
-    name: "React",
+    name: "HTML",
     level: "Advanced",
-    iconUrl: "/images/skills/react-svgrepo-com.svg",
+    iconUrl: "/images/skills/html-5-svgrepo-com.svg",
   },
   {
     id: 2,
@@ -18,21 +18,21 @@ const skillsData = [
   },
   {
     id: 3,
+    name: "React.js",
+    level: "Advanced",
+    iconUrl: "/images/skills/react-svgrepo-com.svg",
+  },
+  {
+    id: 4,
     name: "Tailwind CSS",
     level: "Intermediate",
     iconUrl: "/images/skills/tailwindcss-svgrepo-com.svg",
   },
   {
-    id: 4,
+    id: 5,
     name: "Node.js",
     level: "Intermediate",
     iconUrl: "/images/skills/node-js-svgrepo-com.svg",
-  },
-  {
-    id: 5,
-    name: "MySQL",
-    level: "Intermediate",
-    iconUrl: "/images/skills/mysql-logo-svgrepo-com.svg",
   },
   {
     id: 6,

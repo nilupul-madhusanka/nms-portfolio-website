@@ -9,10 +9,11 @@ const TAB_DATA = [
     id: "languages",
     content: (
       <ul className="list-disc pl-2">
+        <li>HTLM & CSS</li>
         <li>JavaScript</li>
+        <li>Dart - Flutter</li>
         <li>Python</li>
         <li>Java</li>
-        <li>Dart</li>
       </ul>
     ),
   },
@@ -21,7 +22,6 @@ const TAB_DATA = [
     id: "education",
     content: (
       <ul className="list-disc pl-2">
-        <li>Developer Stack Academy - Panadura</li>
         <li>SLTC Research University - Sri Lanka</li>
       </ul>
     ),
@@ -54,13 +54,11 @@ const AboutSection = () => {
         <Image src="/images/about-image.png" width={500} height={500} alt=""/>
         <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
           <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
-          <p className="text-base lg:text-lg">
-            I am a full stack web developer with a passion for creating
-            interactive and responsive web applications. I have experience
-            working with JavaScript, React, Angular, Node.js, Express, MySQL,
-            TS, HTML, CSS, and Git. I am a quick learner and I am always
-            looking to expand my knowledge and skill set. I am a team player and
-            I am excited to work with others to create amazing applications.
+          <p className="text-base lg:text-lg text-justify">
+            I’m a Web and Mobile Developer who enjoys building modern, responsive, and user-friendly digital experiences.
+            I work with HTML, CSS, JavaScript, and React.js to create clean, interactive websites, and I use Flutter to build smooth, cross-platform mobile applications.<br></br><br></br>
+            I love learning new technologies and improving my craft, and I’m always exploring better ways to design, develop, and deliver great products.
+            Whether it’s crafting a pixel-perfect UI, writing clean and scalable code, or solving complex problems, I’m committed to bringing ideas to life with quality and creativity.
           </p>
           <div className="flex flex-row justify-start mt-8">
             <TabButton

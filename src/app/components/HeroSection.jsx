@@ -28,18 +28,18 @@ const HeroSection = () => {
                 1000,
                 "Web Developer",
                 1000,
-                "Programmer",
+                "Mobile Developer",
                 1000,
                 "Tech Enthusiast",
                 1000,
               ]}
               wrapper="span"
-              speed={50}
+              speed={40}
               repeat={Infinity}
             />
           </h1>
           <p className="text-[#ADB7BE] text-base sm:text-lg mb-6 lg:text-xl">
-              I am an undergraduate at SLTC Research University in Sri Lanka<br></br>and passionate about software and full-stack development.
+              I am an undergraduate at SLTC Research University in Sri Lanka.<br></br>And I am passionate about Web and Mobile Development.
           </p>
           <div>
               <div className="group inline-block">
