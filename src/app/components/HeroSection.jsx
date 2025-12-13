@@ -4,11 +4,16 @@ import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import ParticlesBackground from "./ParticlesBackground";
 
 const HeroSection = () => {
   return (
-    <section className="lg:py-16">
-      <div className="grid grid-cols-1 sm:grid-cols-12">
+    <section className="relative lg:py-16 min-h-screen bg-[#121212] overflow-hidden">
+      {/* Particle Background */}
+      <ParticlesBackground />
+      
+      {/* Content */}
+      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-12">
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
