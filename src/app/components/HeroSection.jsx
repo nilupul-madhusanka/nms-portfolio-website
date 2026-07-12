@@ -79,10 +79,11 @@ const HeroSection = () => {
           <div className="absolute inset-4 rounded-full bg-[#181818] flex items-center justify-center">
             <Image
               src="/images/profile.jpg"
-              alt="hero image"
+              alt="Nilupul Madhusanka - Profile Photo"
               className="rounded-full"
               width={300}
-              height={300}/>
+              height={300}
+              priority/>
           </div>
         </div>
         </motion.div>
