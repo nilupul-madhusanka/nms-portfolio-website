@@ -44,7 +44,7 @@ const HeroSection = () => {
             />
           </h1>
           <p className="text-[#ADB7BE] text-base sm:text-lg mb-6 lg:text-xl">
-              I am an undergraduate at SLTC Research University in Sri Lanka.<br></br>And I am passionate about Web and Mobile Development.
+              I am a Bachelor of Applied Information Technology Graduate from SLTC Research University.<br></br>And I am passionate about Web and Mobile Development.
           </p>
           <div>
               <div className="group inline-block">
