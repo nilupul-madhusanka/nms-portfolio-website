@@ -170,7 +170,7 @@ main[tabindex="-1"]:focus {
 .hero-portrait-caption { transform: translateX(-50%); }
 .hero[data-motion="paused"] .hero-loop { animation-play-state: paused; }
 
-/* The explicit control and the OS preference share one accessible static state. */
+/* The pause control switches the hero to a static state. */
 .hero[data-motion-preference="reduced"] .hero-reveal,
 .hero[data-motion-preference="reduced"] .hero-name,
 .hero[data-motion-preference="reduced"] .hero-loop { animation: none; }
@@ -230,14 +230,6 @@ main[tabindex="-1"]:focus {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .hero[data-motion-preference="system"] .hero-reveal,
-  .hero[data-motion-preference="system"] .hero-name,
-  .hero[data-motion-preference="system"] .hero-loop { animation: none; }
-  .hero[data-motion-preference="system"] .hero-reveal { opacity: 1; transform: none; }
-  .hero[data-motion-preference="system"] .hero-name { clip-path: none; }
-  .hero[data-motion-preference="system"] .hero-role-word { display: none; }
-  .hero[data-motion-preference="system"] .hero-role-word:first-child { display: block; opacity: 1; transform: none; }
-  .hero[data-motion-preference="system"] .hero-role-cursor { opacity: 0.6; }
   *:not(.hero, .hero *),
   *:not(.hero, .hero *)::before,
   *:not(.hero, .hero *)::after {

@@ -34,9 +34,9 @@ Lint and the optimized production build passed. The installed dependency tree ha
 
 The hero now includes staggered entrance reveals, a gradient greeting, three cycling role titles, moving aurora lighting, a capped particle constellation, and a floating portrait with gradient rings and orbiting highlights. All effects use existing browser capabilities with no additional dependencies.
 
-The Play/Pause motion control defaults to the visitor’s reduced-motion preference and can explicitly enable or disable hero motion. The server-rendered appearance also respects that preference before JavaScript loads. Decorative loops pause when the hero is offscreen or the page is hidden. The canvas is capped at 28 particles on narrow screens and 48 on larger screens, with pixel density capped at 2.
+Hero motion starts automatically on every page load, including when the device requests reduced motion, as requested by the owner. The server-rendered appearance starts in full-motion mode; the Play/Pause button remains available to switch the hero to a static state. Decorative loops pause when the hero is offscreen or the page is hidden. The canvas is capped at 28 particles on narrow screens and 48 on larger screens, with pixel density capped at 2.
 
-Verified the static system preference, explicit Play/Pause behavior, cycling titles, rotating rings, and offscreen suspension in Chromium. Hero text, buttons, and portrait remained inside the viewport at widths 320, 390, 768, 1024, and 1440 pixels. The final production build and lint passed, with no browser warnings or errors observed.
+Before the autoplay update, verified explicit Play/Pause behavior, cycling titles, rotating rings, and offscreen suspension in Chromium. Hero text, buttons, and portrait remained inside the viewport at widths 320, 390, 768, 1024, and 1440 pixels. The autoplay update retains the same layout and visibility controls.
 
 ## Content and verification limits
 
