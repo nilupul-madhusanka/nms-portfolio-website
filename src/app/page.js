@@ -10,18 +10,21 @@ import BackToTopButton from "./components/BackToTopButton";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col bg-[#121212]">
+    <>
+      <a href="#home" className="fixed left-4 top-4 z-[60] -translate-y-24 rounded-lg bg-purple-700 px-4 py-3 text-white focus:translate-y-0">Skip to content</a>
       <Navbar />
-      <div className="container mt-24 mx-auto px-12 py-4">
-        <HeroSection />
-        <AchievementsSection />
-        <AboutSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <EmailSection />
-        <BackToTopButton />
-      </div>
+      <main id="home" tabIndex={-1} className="flex min-h-screen flex-col bg-[#121212]">
+        <div className="container mt-20 mx-auto px-4 py-4 sm:px-6 lg:px-12">
+          <HeroSection />
+          <AchievementsSection />
+          <AboutSection />
+          <SkillsSection />
+          <ProjectsSection />
+          <EmailSection />
+          <BackToTopButton />
+        </div>
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }

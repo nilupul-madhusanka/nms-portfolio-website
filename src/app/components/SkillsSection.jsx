@@ -1,80 +1,11 @@
-"use client";
-import React, { useRef } from "react";
 import SkillCard from "./SkillCard";
-import { motion, useInView } from "framer-motion";
+import { skills } from "../data/portfolio";
 
-const skillsData = [
-  {
-    id: 1,
-    name: "HTML",
-    level: "Advanced",
-    iconUrl: "/images/skills/html-5-svgrepo-com.svg",
-  },
-  {
-    id: 2,
-    name: "Flutter",
-    level: "Advanced",
-    iconUrl: "/images/skills/flutter-svgrepo-com.svg",
-  },
-  {
-    id: 3,
-    name: "React.js",
-    level: "Advanced",
-    iconUrl: "/images/skills/react-svgrepo-com.svg",
-  },
-  {
-    id: 4,
-    name: "Tailwind CSS",
-    level: "Intermediate",
-    iconUrl: "/images/skills/tailwindcss-svgrepo-com.svg",
-  },
-  {
-    id: 5,
-    name: "Node.js",
-    level: "Intermediate",
-    iconUrl: "/images/skills/node-js-svgrepo-com.svg",
-  },
-  {
-    id: 6,
-    name: "Git",
-    level: "Intermediate",
-    iconUrl: "/images/skills/github-color-svgrepo-com.svg",
-  },
-];
-
-const SkillsSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
-  const cardVariants = {
-    initial: { y: 50, opacity: 0 },
-    animate: { y: 0, opacity: 1 },
-  };
-
+export default function SkillsSection() {
   return (
-      <section id="skills" className="mt-20">
-        <h2 className="text-center text-4xl font-bold text-white mb-8 md:mb-12">
-          My Skills
-        </h2>
-        <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12">
-          {skillsData.map((skill, index) => (
-              <motion.li
-                  key={index}
-                  variants={cardVariants}
-                  initial="initial"
-                  animate={isInView ? "animate" : "initial"}
-                  transition={{ duration: 0.3, delay: index * 0.3 }}
-              >
-                <SkillCard
-                    name={skill.name}
-                    level={skill.level}
-                    iconUrl={skill.iconUrl}
-                />
-              </motion.li>
-          ))}
-        </ul>
-      </section>
+    <section id="skills" tabIndex={-1} className="py-12 sm:py-16" aria-labelledby="skills-title">
+      <h2 id="skills-title" className="mb-8 text-center text-3xl font-bold text-white sm:text-4xl">My Skills</h2>
+      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{skills.map((skill) => <li key={skill.name}><SkillCard {...skill} /></li>)}</ul>
+    </section>
   );
-};
-
-export default SkillsSection;
+}

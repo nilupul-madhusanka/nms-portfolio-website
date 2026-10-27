@@ -3,47 +3,247 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  margin: 0;
+  color: #f8fafc;
+  background: #121212;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-
-@keyframes spin-slow-gradient {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+:focus-visible {
+  outline: 2px solid #c084fc;
+  outline-offset: 4px;
 }
 
-.custom-rotating-ring {
-  border: 4px dashed transparent;
-  border-image: linear-gradient(45deg, #22c55e, #14b8a6, #06b6d4);
-  border-image-slice: 1;
-  border-radius: 100%;
-  width: 100%;
-  height: 100%;
-  animation: spin-slow-gradient 10s linear infinite;
-  box-shadow: 0 0 20px #22c55e, 0 0 40px #14b8a6;
-  mask-image: radial-gradient(circle, white 90%, transparent 100%);
+section[tabindex="-1"]:focus,
+main[tabindex="-1"]:focus {
+  outline: none;
+}
+
+/* Hero motion uses transforms and opacity; no extra animation dependency. */
+.hero-atmosphere {
+  mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 78%, transparent);
+}
+
+.hero-grid {
+  background-image: linear-gradient(#c4b5fd0a 1px, transparent 1px),
+    linear-gradient(90deg, #c4b5fd0a 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 65% 45%, #000, transparent 72%);
+}
+
+.hero-aura {
+  position: absolute;
+  width: min(65vw, 650px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: hero-aura-drift 18s ease-in-out infinite alternate;
+}
+
+.hero-aura-violet {
+  top: -25%;
+  right: -12%;
+  background: radial-gradient(circle, #7c3aed36, #7c3aed12 40%, transparent 70%);
+}
+
+.hero-aura-cyan {
+  right: -8%;
+  bottom: -35%;
+  background: radial-gradient(circle, #06b6d42e, #06b6d40a 45%, transparent 70%);
+  animation-duration: 23s;
+  animation-direction: alternate-reverse;
+}
+
+.hero-light-trail {
+  position: absolute;
+  top: 45%;
+  right: 0;
+  width: 65%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #a78bfa40, #67e8f966, transparent);
+  transform: rotate(-35deg);
+  animation: hero-trail-drift 16s ease-in-out infinite alternate;
+}
+
+.hero-reveal {
+  animation: hero-enter 850ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.hero-reveal-role { animation-delay: 80ms; }
+.hero-reveal-heading { animation-delay: 180ms; }
+.hero-reveal-description { animation-delay: 330ms; }
+.hero-reveal-actions { animation-delay: 470ms; }
+.hero-reveal-portrait { animation-delay: 260ms; }
+
+.hero-greeting {
+  background-image: linear-gradient(100deg, #fb923c, #f43f5e 38%, #c084fc 65%, #fb923c);
+  background-size: 240% 100%;
+  animation: hero-gradient-flow 12s ease-in-out infinite alternate;
+}
+
+.hero-name {
+  display: inline-block;
+  animation: hero-name-reveal 900ms cubic-bezier(0.16, 1, 0.3, 1) 300ms both;
+}
+
+.hero-role-stack { min-height: 1.5em; }
+.hero-role-word {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+  opacity: 0;
+  animation: hero-role-cycle 12s cubic-bezier(0.22, 1, 0.36, 1) infinite both;
+}
+.hero-role-word:nth-child(2) { animation-delay: 4s; }
+.hero-role-word:nth-child(3) { animation-delay: 8s; }
+.hero-role-cursor {
+  width: 2px;
+  height: 1em;
+  flex-shrink: 0;
+  background: #67e8f9;
+  animation: hero-cursor 1.4s ease-in-out infinite;
+}
+
+.hero-primary-action,
+.hero-secondary-action {
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+.hero-primary-action:hover,
+.hero-secondary-action:hover { transform: translateY(-2px); }
+.hero-primary-action:hover,
+.hero-primary-action:focus-visible { box-shadow: 0 8px 28px #a855f735; }
+.hero-primary-action::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, #ffffff30 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 650ms ease;
+}
+.hero-primary-action:hover::before,
+.hero-primary-action:focus-visible::before { transform: translateX(120%); }
+
+.hero-portrait { animation: hero-portrait-float 7s ease-in-out infinite; }
+.hero-portrait-glow {
+  background: radial-gradient(circle, transparent 42%, #a855f728 58%, #22d3ee12 65%, transparent 72%);
+  animation: hero-halo-breathe 6s ease-in-out infinite alternate;
+}
+.hero-portrait-ring,
+.hero-portrait-ring-inner {
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+}
+.hero-portrait-ring {
+  background: conic-gradient(from 30deg, transparent 5%, #22d3ee 22%, #a78bfa 40%, transparent 53%, #f472b6 70%, #a78bfa 83%, transparent 98%);
+  animation: hero-orbit-spin 18s linear infinite;
+}
+.hero-portrait-ring-inner {
+  background: conic-gradient(transparent, #c084fcaa, transparent 40%, #67e8f980 70%, transparent);
+  animation: hero-orbit-spin 26s linear infinite reverse;
+}
+.hero-orbit {
+  border: 1px solid #c4b5fd12;
+  animation: hero-orbit-spin 22s linear infinite;
+}
+.hero-orbit span {
+  position: absolute;
+  left: 50%;
+  top: -3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #67e8f9;
+  box-shadow: 0 0 14px 3px #22d3ee55;
+}
+.hero-orbit span:last-child {
+  top: auto;
+  bottom: -3px;
+  background: #c084fc;
+  box-shadow: 0 0 14px 3px #a855f755;
+}
+.hero-portrait-caption { transform: translateX(-50%); }
+.hero[data-motion="paused"] .hero-loop { animation-play-state: paused; }
+
+/* The explicit control and the OS preference share one accessible static state. */
+.hero[data-motion-preference="reduced"] .hero-reveal,
+.hero[data-motion-preference="reduced"] .hero-name,
+.hero[data-motion-preference="reduced"] .hero-loop { animation: none; }
+.hero[data-motion-preference="reduced"] .hero-reveal { opacity: 1; transform: none; }
+.hero[data-motion-preference="reduced"] .hero-name { clip-path: none; }
+.hero[data-motion-preference="reduced"] .hero-role-word { display: none; }
+.hero[data-motion-preference="reduced"] .hero-role-word:first-child { display: block; opacity: 1; transform: none; }
+.hero[data-motion-preference="reduced"] .hero-role-cursor { opacity: 0.6; }
+
+@keyframes hero-enter {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes hero-name-reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0); }
+}
+@keyframes hero-role-cycle {
+  0% { opacity: 0; transform: translateY(45%); }
+  4%, 27% { opacity: 1; transform: translateY(0); }
+  33%, 100% { opacity: 0; transform: translateY(-45%); }
+}
+@keyframes hero-cursor {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+@keyframes hero-gradient-flow {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+@keyframes hero-aura-drift {
+  from { transform: translate3d(-3%, -2%, 0) scale(0.96); }
+  to { transform: translate3d(6%, 8%, 0) scale(1.08); }
+}
+@keyframes hero-trail-drift {
+  from { opacity: 0.3; transform: translateY(-30px) rotate(-35deg); }
+  to { opacity: 0.8; transform: translateY(40px) rotate(-30deg); }
+}
+@keyframes hero-portrait-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes hero-halo-breathe {
+  from { opacity: 0.5; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1.05); }
+}
+@keyframes hero-orbit-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 639px) {
+  .hero-aura { width: 110vw; }
+  .hero-aura-violet { top: 10%; right: -55%; }
+  .hero-aura-cyan { bottom: -10%; right: -45%; }
+  .hero-light-trail { top: 65%; width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero[data-motion-preference="system"] .hero-reveal,
+  .hero[data-motion-preference="system"] .hero-name,
+  .hero[data-motion-preference="system"] .hero-loop { animation: none; }
+  .hero[data-motion-preference="system"] .hero-reveal { opacity: 1; transform: none; }
+  .hero[data-motion-preference="system"] .hero-name { clip-path: none; }
+  .hero[data-motion-preference="system"] .hero-role-word { display: none; }
+  .hero[data-motion-preference="system"] .hero-role-word:first-child { display: block; opacity: 1; transform: none; }
+  .hero[data-motion-preference="system"] .hero-role-cursor { opacity: 0.6; }
+  *:not(.hero, .hero *),
+  *:not(.hero, .hero *)::before,
+  *:not(.hero, .hero *)::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

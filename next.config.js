@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  poweredByHeader: false,
   images: {
     unoptimized: false,
   },
@@ -11,6 +12,10 @@ const nextConfig = {
       {
         source: '/(.*)',
         headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'",
+          },
           {
             key: 'X-Frame-Options',
             value: 'DENY',

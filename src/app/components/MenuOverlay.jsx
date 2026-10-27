@@ -1,16 +1,11 @@
-import React from "react";
 import NavLink from "./NavLink";
 
-const MenuOverlay = ({ links }) => {
+export default function MenuOverlay({ links, open, onNavigate }) {
   return (
-    <ul className="flex flex-col py-4 items-center">
-      {links.map((link, index) => (
-        <li key={index}>
-          <NavLink href={link.path} title={link.title} />
-        </li>
-      ))}
-    </ul>
+    <div id="mobile-navigation" hidden={!open} className="max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-[#33353F] md:hidden">
+      <ul className="flex flex-col px-4 py-3">
+        {links.map((link) => <li key={link.path}><NavLink href={link.path} title={link.title} onClick={() => onNavigate(link.path)} /></li>)}
+      </ul>
+    </div>
   );
-};
-
-export default MenuOverlay;
+}

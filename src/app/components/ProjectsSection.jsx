@@ -1,154 +1,23 @@
 "use client";
-import React, { useState, useRef } from "react";
+import { useState } from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectTag from "./ProjectTag";
-import { motion, useInView } from "framer-motion";
+import { filterProjects, projectCategories } from "../data/portfolio";
 
-const projectsData = [
-  {
-    id: 1,
-    title: "E-Learning Platform",
-    description: "This project is a modern and responsive E-Learning Platform developed using React and Tailwind CSS. It provides a seamless learning experience for students and educators with clearly organized dashboards, interactive course pages, and intuitive navigation.",
-    image: "/images/projects/lms.png",
-    tag: ["All", "Web"],
-    gitUrl: "https://github.com/nilupul-madhusanka/nms-e-learning-frontend.git",
-    previewUrl: "/",
-  },
-  {
-    id: 2,
-    title: "Library Management System",
-    description: "This project is a modern, responsive frontend application for a Library Management System, developed using React and Tailwind CSS. It provides an intuitive user interface for managing books, users, loans, and reservations, offering a seamless experience across all devices.",
-    image: "/images/projects/library.png",
-    tag: ["All", "Web"],
-    gitUrl: "https://github.com/nilupul-madhusanka/nms-library-frontend.git",
-    previewUrl: "/",
-  },
-  {
-    id: 3,
-    title: "Flutter Chat App",
-    description: "This project is a real-time chat application built using Flutter for a smooth, cross-platform mobile experience and Firebase as the backend for authentication, messages storage, and instant message syncing. The app provides a fast, secure, and modern messaging experience with a clean and user-friendly interface.",
-    image: "/images/projects/chat-app.png",
-    tag: ["All", "Mobile"],
-    gitUrl: "https://github.com/nilupul-madhusanka/nms-chat-app.git",
-    previewUrl: "/",
-  },
-  {
-    id: 4,
-    title: "E-commerce Mini Store",
-    description: "This project is a simple yet functional Mini Store Frontend built using React and Bootstrap 5, designed to demonstrate clean UI components, product display layouts, and basic e-commerce interactions. It provides a fast, responsive, and user-friendly shopping interface suitable for learning and portfolio purposes.",
-    image: "/images/projects/store.png",
-    tag: ["All", "Web"],
-    gitUrl: "https://github.com/nilupul-madhusanka/nms-mini-store-frontend.git",
-    previewUrl: "/",
-  },
-  {
-    id: 5,
-    title: "Portfolio Website",
-    description: "This is my portfolio website built with Next.js and Tailwind CSS. It showcases my skills, projects, and achievements in an elegant and responsive design.",
-    image: "/images/projects/portfolio.png",
-    tag: ["All", "Web"],
-    gitUrl: "https://github.com/nilupul-madhusanka/nms-portfolio-website.git",
-    previewUrl: "/",
-  },
-  {
-    id: 6,
-    title: "Family Finance Tracker",
-    description: "This project is a Family Finance Management Mobile Application developed using Flutter and Firebase. It helps families track their expenses, manage budgets, and visualize their financial data through intuitive charts and reports.",
-    image: "/images/projects/fft-app.png",
-    tag: ["All", "Mobile"],
-    gitUrl: "https://github.com/nilupul-madhusanka/nms-fft-app.git",
-    previewUrl: "/",
-  },
-  {
-    id: 7,
-    title: "Web OS Simulator",
-    description: "This project is a Web OS Simulator built using HTML, CSS, and JavaScript, designed to mimic the look and feel of a desktop operating system within a web browser. It features draggable windows, a taskbar, and basic applications like a file explorer and a text editor, providing an interactive and nostalgic user experience.",
-    image: "/images/projects/nms-web-os.png",
-    tag: ["All", "Web"],
-    gitUrl: "https://github.com/nilupul-madhusanka/nms-web-os.git",
-    previewUrl: "/",
-  },
-  // {
-  //   id: 8,
-  //   title: "Demo 8",
-  //   description: "Description for Demo 8 project goes here.",
-  //   image: "/images/projects/1.png",
-  //   tag: ["All", "Web"],
-  //   gitUrl: "/",
-  //   previewUrl: "/",
-  // },
-  // {
-  //   id: 9,
-  //   title: "Demo 9",
-  //   description: "Description for Demo 9 project goes here.",
-  //   image: "/images/projects/1.png",
-  //   tag: ["All", "Web"],
-  //   gitUrl: "/",
-  //   previewUrl: "/",
-  // },
-];
-
-const ProjectsSection = () => {
-  const [tag, setTag] = useState("All");
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
-  const handleTagChange = (newTag) => {
-    setTag(newTag);
-  };
-
-  const filteredProjects = projectsData.filter((project) =>
-    project.tag.includes(tag)
-  );
-
-  const cardVariants = {
-    initial: { y: 50, opacity: 0 },
-    animate: { y: 0, opacity: 1 },
-  };
-
+export default function ProjectsSection() {
+  const [category, setCategory] = useState("All");
+  const visibleProjects = filterProjects(category);
   return (
-    <section id="projects">
-      <h2 className="text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12">
-        My Projects
-      </h2>
-      <div className="text-white flex flex-row justify-center items-center gap-2 py-6">
-        <ProjectTag
-          onClick={handleTagChange}
-          name="All"
-          isSelected={tag === "All"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="Web"
-          isSelected={tag === "Web"}
-        />
-        <ProjectTag
-          onClick={handleTagChange}
-          name="Mobile"
-          isSelected={tag === "Mobile"}
-        />
+    <section id="projects" tabIndex={-1} className="py-12 sm:py-16" aria-labelledby="projects-title">
+      <h2 id="projects-title" className="mb-4 text-center text-3xl font-bold text-white sm:text-4xl">My Projects</h2>
+      <p className="mx-auto max-w-2xl text-center leading-relaxed text-[#ADB7BE]">Recent work in web, mobile, desktop, and AI automation, alongside the projects I’ve learned from.</p>
+      <div className="flex flex-wrap items-center justify-center gap-2 py-6" aria-label="Filter projects">
+        {projectCategories.map((name) => <ProjectTag key={name} name={name} onClick={setCategory} isSelected={category === name} />)}
       </div>
-      <ul ref={ref} className="grid md:grid-cols-3 gap-8 md:gap-12 text-justify">
-        {filteredProjects.map((project, index) => (
-          <motion.li
-            key={project.id}
-            variants={cardVariants}
-            initial="initial"
-            animate={isInView ? "animate" : "initial"}
-            transition={{ duration: 0.3, delay: index * 0.4 }}
-          >
-            <ProjectCard
-              title={project.title}
-              description={project.description}
-              imgUrl={project.image}
-              gitUrl={project.gitUrl}
-              previewUrl={project.previewUrl}
-            />
-          </motion.li>
-        ))}
+      <p role="status" className="mb-6 text-center text-sm text-[#ADB7BE]">{visibleProjects.length} {visibleProjects.length === 1 ? "project" : "projects"} · {category}</p>
+      <ul className="grid auto-rows-fr gap-6 sm:grid-cols-2 xl:grid-cols-3">
+        {visibleProjects.map((project) => <li key={project.id} className="min-w-0"><ProjectCard project={project} /></li>)}
       </ul>
     </section>
   );
-};
-
-export default ProjectsSection;
+}

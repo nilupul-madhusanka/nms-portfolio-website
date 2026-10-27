@@ -1,69 +1,22 @@
-"use client";
-import React from "react";
-import dynamic from "next/dynamic";
+import { projects } from "../data/portfolio";
 
-const AnimatedNumbers = dynamic(
-  () => {
-    return import("react-animated-numbers");
-  },
-  { ssr: false }
-);
-
-const achievementsList = [
-  {
-    metric: "Projects",
-    value: "20",
-    postfix: "+",
-  },
-  {
-    prefix: "~",
-    metric: "Users",
-    value: "50",
-  },
-  {
-    metric: "Certifications",
-    value: "3",
-  },
-  {
-    metric: "Years",
-    value: "2",
-  },
-];
-
-const AchievementsSection = () => {
+export default function AchievementsSection() {
+  const stats = [
+    { value: projects.length, label: "Projects showcased" },
+    { value: "Web", label: "Interfaces & APIs" },
+    { value: "Mobile", label: "Flutter applications" },
+    { value: "Beyond", label: "Desktop & AI automation" },
+  ];
   return (
-    <div className="py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
-      <div className="sm:border-[#33353F] sm:border rounded-md py-8 px-16 flex flex-col sm:flex-row items-center justify-between">
-        {achievementsList.map((achievement, index) => {
-          return (
-            <div
-              key={index}
-              className="flex flex-col items-center justify-center mx-4 my-4 sm:my-0"
-            >
-              <h2 className="text-white text-4xl font-bold flex flex-row">
-                {achievement.prefix}
-                <AnimatedNumbers
-                  includeComma
-                  animateToNumber={parseInt(achievement.value)}
-                  locale="en-US"
-                  className="text-white text-4xl font-bold"
-                  configs={(_, index) => {
-                    return {
-                      mass: 1,
-                      friction: 100,
-                      tensions: 140 * (index + 1),
-                    };
-                  }}
-                />
-                {achievement.postfix}
-              </h2>
-              <p className="text-[#ADB7BE] text-base">{achievement.metric}</p>
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    <section aria-label="Portfolio at a glance" className="py-8 sm:py-12">
+      <dl className="grid grid-cols-2 gap-6 rounded-xl border border-[#33353F] px-4 py-8 text-center lg:grid-cols-4">
+        {stats.map((stat) => (
+          <div key={stat.label} className="flex min-w-0 flex-col-reverse gap-2">
+            <dt className="text-sm text-[#ADB7BE]">{stat.label}</dt>
+            <dd className="text-2xl font-bold text-white sm:text-3xl">{stat.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
   );
-};
-
-export default AchievementsSection;
+}

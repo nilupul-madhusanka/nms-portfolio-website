@@ -1,21 +1,10 @@
-import React from "react";
+import Image from "next/image";
 
-const SkillCard = ({ iconUrl, name, level }) => {
-    return (
-        <div>
-            <div
-                className="h-52 md:h-72 rounded-t-xl relative group flex items-center justify-center bg-[#181818]"
-                style={{ backgroundImage: `url(${iconUrl})`, backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}
-            >
-                <div className="overlay absolute top-0 left-0 w-full h-full bg-[#181818] bg-opacity-0 hidden group-hover:flex items-center justify-center group-hover:bg-opacity-80 transition-all duration-500">
-                    <p className="text-white text-lg font-semibold">{level}</p>
-                </div>
-            </div>
-            <div className="text-white rounded-b-xl mt-3 bg-[#181818] py-6 px-4 text-center">
-                <h5 className="text-xl font-semibold mb-2 transition duration-300 hover:brightness-110 hover:scale-110">{name}</h5>
-            </div>
-        </div>
-    );
-};
-
-export default SkillCard;
+export default function SkillCard({ icon, name, detail }) {
+  return (
+    <div className="flex h-full items-center gap-4 rounded-xl border border-[#33353F] bg-[#181818] p-5">
+      <Image src={icon} width={48} height={48} className="h-12 w-12 shrink-0 object-contain" alt="" />
+      <div className="min-w-0"><h3 className="font-semibold text-white">{name}</h3><p className="mt-1 text-sm text-[#ADB7BE]">{detail}</p></div>
+    </div>
+  );
+}

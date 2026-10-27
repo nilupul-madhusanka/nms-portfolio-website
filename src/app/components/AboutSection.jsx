@@ -1,95 +1,28 @@
 "use client";
-import React, { useTransition, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import TabButton from "./TabButton";
+import { aboutTabs, profile } from "../data/portfolio";
 
-const TAB_DATA = [
-  {
-    title: "Languages",
-    id: "languages",
-    content: (
-      <ul className="list-disc pl-2">
-        <li>HTML & CSS</li>
-        <li>JavaScript</li>
-        <li>Dart - Flutter</li>
-        <li>Python</li>
-        <li>Java</li>
-      </ul>
-    ),
-  },
-  {
-    title: "Education",
-    id: "education",
-    content: (
-      <ul className="list-disc pl-2">
-        <li>SLTC Research University - Sri Lanka</li>
-      </ul>
-    ),
-  },
-  {
-    title: "Certifications",
-    id: "certifications",
-    content: (
-      <ul className="list-disc pl-2">
-        <li>Web Design for Beginners - CODL at UOM</li>
-        <li>Python for Beginners - CODL at UOM</li>
-      </ul>
-    ),
-  },
-];
-
-const AboutSection = () => {
-  const [tab, setTab] = useState("languages");
-  const [isPending, startTransition] = useTransition();
-
-  const handleTabChange = (id) => {
-    startTransition(() => {
-      setTab(id);
-    });
-  };
-
+export default function AboutSection() {
+  const [tab, setTab] = useState(aboutTabs[0].id);
+  const activeTab = aboutTabs.find((item) => item.id === tab);
   return (
-    <section className="text-white" id="about">
-      <div className="md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
-        <Image src="/images/about-image.png" width={500} height={500} alt="About Nilupul Madhusanka"/>
-        <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
-          <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
-          <p className="text-base lg:text-lg text-justify">
-            I’m a Web and Mobile Developer who enjoys building modern, responsive, and user-friendly digital experiences.
-            I work with HTML, CSS, JavaScript, and React.js to create clean, interactive websites, and I use Flutter to build smooth, cross-platform mobile applications.<br></br><br></br>
-            I love learning new technologies and improving my craft, and I’m always exploring better ways to design, develop, and deliver great products.
-            Whether it’s crafting a pixel-perfect UI, writing clean and scalable code, or solving complex problems, I’m committed to bringing ideas to life with quality and creativity.
-          </p>
-          <div className="flex flex-row justify-start mt-8">
-            <TabButton
-              selectTab={() => handleTabChange("languages")}
-              active={tab === "languages"}
-            >
-              {" "}
-              Languages{" "}
-            </TabButton>
-            <TabButton
-              selectTab={() => handleTabChange("education")}
-              active={tab === "education"}
-            >
-              {" "}
-              Education{" "}
-            </TabButton>
-            <TabButton
-              selectTab={() => handleTabChange("certifications")}
-              active={tab === "certifications"}
-            >
-              {" "}
-              Certifications{" "}
-            </TabButton>
+    <section className="py-12 text-white sm:py-16" id="about" tabIndex={-1} aria-labelledby="about-title">
+      <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+        <Image src="/images/about-image.png" width={500} height={500} sizes="(min-width: 1024px) 45vw, 90vw" className="mx-auto h-auto w-full max-w-md rounded-xl" alt="About Nilupul Madhusanka" />
+        <div className="min-w-0">
+          <h2 id="about-title" className="mb-6 text-3xl font-bold sm:text-4xl">About Me</h2>
+          {profile.bio.map((paragraph) => <p key={paragraph} className="mb-4 leading-relaxed text-[#ADB7BE]">{paragraph}</p>)}
+          <div className="mt-6 flex flex-wrap gap-2" aria-label="About categories">
+            {aboutTabs.map((item) => (
+              <button key={item.id} type="button" aria-pressed={tab === item.id} aria-controls="about-details" onClick={() => setTab(item.id)} className={`min-h-11 rounded-lg border px-3 py-2 text-sm font-semibold ${tab === item.id ? "border-purple-400 bg-purple-950 text-white" : "border-[#33353F] text-[#ADB7BE] hover:text-white"}`}>{item.title}</button>
+            ))}
           </div>
-          <div className="mt-8">
-            {TAB_DATA.find((t) => t.id === tab).content}
+          <div id="about-details" className="mt-5" aria-live="polite">
+            <ul className="list-disc space-y-2 pl-5 text-[#ADB7BE]">{activeTab.items.map((item) => <li key={item}>{item}</li>)}</ul>
           </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default AboutSection;
+}

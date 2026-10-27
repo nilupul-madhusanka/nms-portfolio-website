@@ -8,6 +8,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: colors.purple,
+        secondary: colors.pink,
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -16,11 +20,6 @@ module.exports = {
       animation: {
         'spin-slow': 'spin 6s linear infinite',
       },
-    },
-    colors: {
-      ...colors,
-      primary: colors.purple,
-      secondary: colors.pink,
     },
   },
   plugins: [],

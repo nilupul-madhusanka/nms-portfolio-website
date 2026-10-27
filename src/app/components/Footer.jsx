@@ -1,14 +1,10 @@
-import React from "react";
-
-const Footer = () => {
+export default function Footer() {
   return (
-    <footer className="footer border z-10 border-t-[#33353F] border-l-transparent border-r-transparent text-white">
-      <div className="container p-12 flex justify-between">
-        <span>NMS.Dev 2026</span>
-        <p className="text-slate-600">All rights reserved.</p>
+    <footer className="border-t border-[#33353F] text-white">
+      <div className="container mx-auto flex flex-col items-center justify-between gap-3 px-4 py-8 text-center text-sm sm:flex-row sm:px-6 lg:px-12">
+        <span>NMS.Dev © {new Date().getFullYear()}</span>
+        <p className="text-[#ADB7BE]">All rights reserved.</p>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

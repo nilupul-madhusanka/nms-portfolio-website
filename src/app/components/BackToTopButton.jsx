@@ -1,51 +1,21 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-const BackToTopButton = () => {
+export default function BackToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
-
-  const toggleVisibility = () => {
-    setIsVisible(window.scrollY > 300);
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
   useEffect(() => {
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
+    const onScroll = () => setIsVisible(window.scrollY > 300);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  return (
-    <div className="fixed bottom-6 right-6 z-50">
-      {isVisible && (
-        <button
-        onClick={scrollToTop}
-        className="p-3 rounded-full shadow-md bg-gradient-to-r from-primary-500 to-secondary-600 text-white hover:scale-110 transition-transform duration-300"
-        aria-label="Back to top"
-      >
-        {/* SVG */}
-        <svg
-          className="w-20 h-8"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={5}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M5 15l7-7 7 7"
-          />
-        </svg>
-      </button>
-      )}
-    </div>
+  const scrollToTop = () => {
+    document.querySelector("#home")?.focus({ preventScroll: true });
+    window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+  };
+  return isVisible && (
+    <button type="button" onClick={scrollToTop} aria-label="Back to top" className="fixed bottom-4 right-4 z-40 flex h-11 w-11 items-center justify-center rounded-full border border-purple-300 bg-primary-800 text-white shadow-lg hover:bg-primary-700 sm:bottom-6 sm:right-6">
+      <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" /></svg>
+    </button>
   );
-};
-
-export default BackToTopButton;
+}
