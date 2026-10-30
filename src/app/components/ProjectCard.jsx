@@ -20,12 +20,14 @@ export default function ProjectCard({ project }) {
             <span className="text-xs font-medium uppercase tracking-[0.2em]">{project.category}</span>
           </div>
         )}
-        {project.featured && <span className="absolute left-3 top-3 rounded-full border border-white/20 bg-[#121212]/90 px-3 py-1 text-xs font-medium text-white">Recent work</span>}
       </div>
       <div className="flex flex-1 flex-col p-5 text-left text-white">
         <h3 className="mb-3 text-xl font-semibold">{project.title}</h3>
         <p className="mb-5 text-sm leading-relaxed text-[#ADB7BE]">{project.description}</p>
-        <ul aria-label="Technologies" className="mb-5 flex flex-wrap gap-2">{project.technologies.map((tech) => <li key={tech} className="rounded-md bg-[#252530] px-2 py-1 text-xs text-purple-200">{tech}</li>)}</ul>
+        <div className="mb-5 flex flex-wrap items-center gap-2">
+          {project.featured && <span className="rounded-full border border-white/20 bg-[#121212]/90 px-3 py-1 text-xs font-medium text-white">Recent work</span>}
+          <ul aria-label="Technologies" className="flex flex-wrap gap-2">{project.technologies.map((tech) => <li key={tech} className="rounded-md bg-[#252530] px-2 py-1 text-xs text-purple-200">{tech}</li>)}</ul>
+        </div>
         <div className="mt-auto flex flex-wrap gap-2 border-t border-[#33353F] pt-4">
           {project.links.map((link) => <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer" aria-label={`${project.title}: ${link.label} (opens in new tab)`} className="inline-flex min-h-11 items-center gap-1 rounded-lg border border-[#4b4b58] px-3 py-2 text-sm text-white hover:border-purple-400 hover:bg-purple-950">{link.label}<ArrowUpRightIcon aria-hidden="true" className="h-4 w-4" /></a>)}
           {project.availability && <p className="py-3 text-sm text-[#ADB7BE]">{project.availability}</p>}
@@ -34,4 +36,3 @@ export default function ProjectCard({ project }) {
     </article>
   );
 }
-

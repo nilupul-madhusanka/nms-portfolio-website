@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import ParticlesBackground from "./ParticlesBackground";
+import HexagonalBackground from "./HexagonalBackground";
 import HeroMotion from "./HeroMotion";
 import { profile } from "../data/portfolio";
 
@@ -13,8 +13,8 @@ export default function HeroSection() {
         <div className="hero-aura hero-aura-cyan hero-loop" />
         <div className="hero-light-trail hero-loop" />
       </div>
-      <ParticlesBackground />
-      <div className="relative z-10 grid items-center gap-12 lg:grid-cols-12">
+      <HexagonalBackground />
+      <div className="relative z-10 grid items-center gap-12 px-4 sm:px-8 lg:grid-cols-12 lg:px-12">
         <div className="min-w-0 text-center lg:col-span-8 lg:text-left">
           <div className="hero-reveal hero-reveal-role mb-5 flex justify-center lg:justify-start">
             <p className="hero-role inline-flex max-w-full items-center gap-2 rounded-full border border-purple-400/20 bg-[#171322]/80 px-3 py-2 text-xs font-medium text-purple-200 sm:gap-3 sm:px-4 sm:text-sm">
@@ -29,12 +29,12 @@ export default function HeroSection() {
             </p>
           </div>
           <h1 id="hero-title" className="hero-reveal hero-reveal-heading mb-6 text-4xl font-extrabold leading-tight text-white sm:text-6xl lg:text-7xl">
-            <span className="hero-greeting hero-loop bg-clip-text text-transparent">Hello, I’m</span>
+            <span className="hero-greeting hero-loop bg-clip-text text-transparent">Hello, I'm</span>
             <br /><span className="hero-name">Nilupul<span className="hero-name-dot text-purple-400">.</span></span>
           </h1>
           <p className="hero-reveal hero-reveal-description mx-auto mb-8 max-w-xl text-base leading-relaxed text-[#ADB7BE] sm:text-lg lg:mx-0">{profile.introduction}</p>
           <div className="hero-reveal hero-reveal-actions flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
-            <Link href="#contact" className="hero-primary-action relative inline-flex min-h-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-primary-600 to-secondary-700 px-6 py-3 font-medium text-white hover:from-primary-700 hover:to-secondary-800">Let’s Connect<span aria-hidden="true" className="ml-2">↗</span></Link>
+            <Link href="#contact" className="hero-primary-action relative inline-flex min-h-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-primary-600 to-secondary-700 px-6 py-3 font-medium text-white hover:from-primary-700 hover:to-secondary-800">Let's Connect<span aria-hidden="true" className="ml-2">↗</span></Link>
             <a href={profile.cv} download="Nilupul_Madhusanka_CV.pdf" className="hero-secondary-action inline-flex min-h-12 items-center justify-center rounded-full border border-purple-400/70 bg-[#121212]/50 px-6 py-3 font-medium text-white hover:bg-purple-950">Download CV</a>
           </div>
         </div>
